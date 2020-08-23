@@ -7,30 +7,7 @@ import Rating from './Rating/Rating';
 import Nav from './Nav/Nav';
 import config from './config';
 import './App.css';
-
-// const bookmarks = [
-//   {
-//     id: 0,
-//     title: 'Google',
-//     url: 'http://www.google.com',
-//     rating: '3',
-//     desc: 'Internet-related services and products.'
-//   },
-//   {
-//     id: 1,
-//     title: 'Thinkful',
-//     url: 'http://www.thinkful.com',
-//     rating: '5',
-//     desc: '1-on-1 learning to accelerate your way to a new high-growth tech career!'
-//   },
-//   {
-//     id: 2,
-//     title: 'Github',
-//     url: 'http://www.github.com',
-//     rating: '4',
-//     desc: 'brings together the world\'s largest community of developers.'
-//   }
-// ];
+import EditBookmark from './EditBookmark/EditBookmark';
 
 class App extends Component {
   state = {
@@ -50,6 +27,7 @@ class App extends Component {
       bookmarks: [ ...this.state.bookmarks, bookmark ],
     })
   }
+
   deleteBookmark = bookmarkId => {
     const newBookmarks = this.state.bookmarks.filter(bm =>
       bm.id !== bookmarkId
@@ -58,6 +36,17 @@ class App extends Component {
       bookmarks: newBookmarks
     })
   }
+
+  updateBookmark = updatedBookmark => {
+    const newBookmarks = this.state.bookmarks.map(bm =>
+      (bm.id === updatedBookmark.id)
+        ? updatedBookmark
+        : bm
+    )
+    this.setState({
+      bookmarks: newBookmarks
+    })
+  }; 
 
   componentDidMount() {
     fetch(config.API_ENDPOINT, {
@@ -78,11 +67,11 @@ class App extends Component {
   }
 
   render() {
-    // const { bookmarks } = this.state
     const contextValue = {
       bookmarks: this.state.bookmarks,
       addBookmark: this.addBookmark,
-      deleteBookmark: this.deleteBookmark
+      deleteBookmark: this.deleteBookmark,
+      updateBookmark: this.updateBookmark,
     }
 
     return (
@@ -92,22 +81,17 @@ class App extends Component {
           <Nav />
           <div className='content' aria-live='polite'>
             <Route
+              exact
+              path='/'
+              component={BookmarkList}
+            />
+            <Route
               path='/add-bookmark'
-              // render={({ history }) => {
-              //   return <AddBookmark
-              //     onAddBookmark={this.addBookmark}
-              //     onClickCancel={() => history.push('/')}
-              //   />
-              // }}
               component={AddBookmark} 
             />
             <Route
-              exact
-              path='/'
-              // render={({ history }) => {
-              //   return <BookmarkList bookmarks={bookmarks} />
-              // }}
-              component={BookmarkList}
+              path='/edit/:bookmarkId'
+              component={EditBookmark}
             />
           </div>
           <Rating />

@@ -22,6 +22,10 @@
   margin: 4px 0;
 }
 
+.BookmarkItem__description + .BookmarkItem__description {
+  margin-left: 15px;
+}
+
 .AddBookmarkItem__required {
   color: #b00c0c;
 }
