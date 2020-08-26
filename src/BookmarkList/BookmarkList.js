@@ -30,7 +30,6 @@ class BookmarkList extends Component {
 }
 
 BookmarkList.propTypes = {
-  // bookmarks: PropTypes.arrayOf(PropType.object)
   bookmarks: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,

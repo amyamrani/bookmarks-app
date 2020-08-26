@@ -31,7 +31,6 @@ class EditBookmark extends Component {
       return res.json()
     })
     .then(responseData => {
-      console.log(responseData)
       this.setState({
         id: responseData.id,
         title: responseData.title,

@@ -24,7 +24,6 @@ function deleteBookmarkRequest(bookmarkId, callback) {
     .then(data => {
       // call the callback when the request is successful
       // this is where the App component can remove it from state
-      console.log('hello2', data)
       callback(bookmarkId)
     })
     .catch(error => {
@@ -59,7 +58,6 @@ export default function BookmarkItem(props) {
                 Edit 
             </Link>
         
-
             <button
               className='BookmarkItem__description'
               onClick={() => {
@@ -83,12 +81,9 @@ BookmarkItem.defaultProps = {
   description: ''
 };
 
-// BookmarkItem.propTypes = {
-//   title: PropTypes.string.isRequired,
-//   url: PropTypes.string.isRequired,
-//   rating: PropTypes.number,
-//   description: PropTypes.string
-// };
+BookmarkItem.defaultProps = {
+  onClickDelete: () => {},
+}
 
 BookmarkItem.propTypes = {
   title: PropTypes.string.isRequired,

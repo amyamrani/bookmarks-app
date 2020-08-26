@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import AddBookmark from './AddBookmark/AddBookmark';
-import BookmarkList from './BookmarkList/BookmarkList';
-import BookmarksContext from './BookmarksContext';
-import Rating from './Rating/Rating';
-import Nav from './Nav/Nav';
-import config from './config';
+import AddBookmark from '../AddBookmark/AddBookmark';
+import BookmarkList from '../BookmarkList/BookmarkList';
+import BookmarksContext from '../BookmarksContext';
+import Rating from '../Rating/Rating';
+import Nav from '../Nav/Nav';
+import config from '../config';
 import './App.css';
-import EditBookmark from './EditBookmark/EditBookmark';
+import EditBookmark from '../EditBookmark/EditBookmark';
 
 class App extends Component {
   state = {
